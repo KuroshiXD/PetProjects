@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Профиль</title>
+{% endblock %}
+{% block content %}
+    <div class="profile-container">
+        <h1>Профиль</h1>
+        <div class="back-link-container">
+            <a href="{% url 'topics' %}" class="back-link">Вернуться обратно</a>
+        </div>
+
+        <div class="profile-info">
+            <h2>Имя (Username): {{ username }}</h2>
+            <h2>Email: {{ email }}</h2>
+            <h2>Дата регистрации: {{ date_of_registration }}</h2>
+        </div>
+
+        <hr>
+
+        <div class="profile-articles">
+            <h2>Ваши статьи:</h2>
+            {% if articles %}
+                <div class="articles-list">
+                    {% for article in articles %}
+                        <div class="article-item">
+                            <a href="{% url 'topic_content' article.id %}" class="article-link">{{ article.title }}</a>
+                            <a href="{% url 'delete_topic' username article.id %}" class="delete_article">Удалить</a>
+                            <span class="article-date">Дата создания: {{ article.created_at }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-articles-message">Нет никаких статей!</p>
+            {% endif %}
+        </div>
+
+        <hr>
+
+{#        <div class="profile-comments">#}
+{#            <h2>Ваши комментарии:</h2>#}
+{#            {% if comments %}#}
+{#                <div class="comments-list">#}
+{#                    {% for comment in comments %}#}
+{#                        <div class="comment-item">#}
+{#                            <p>{{ comment.content }}</p>#}
+{#                            <p>{{ comment.created_at }}</p>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            {% else %}#}
+{#                <p class="no-comments-message">Ты епта нихера не комментировал!</p>#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        <hr>#}
+    </div>
+{% endblock %}

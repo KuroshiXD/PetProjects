@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Registration</title>
+{% endblock %}
+{% block content %}
+    <div class="switch_btn__">
+        <a class="switch_btn" href="{% url 'login' %}">Авторизация</a>
+        <a class="btn_to_main" href="{% url 'topics' %}">На главную</a>
+    </div>
+    <div class="registration">
+        <h2>Регистрация</h2>
+        {% if error %}
+            <div class="alert">
+                <script>
+                    alert("{{ error }}")
+                </script>
+            </div>
+        {% endif %}
+        <div class="registration-form">
+            <form class="form" method="post">
+                {% csrf_token %}
+                <div class="zalupa">
+                    <div class="zalupa1">
+                        <label class="login_label" for="username">Введите Логин: </label>
+                        <label class="login_label" for="email">Введите Email: </label>
+                        <label class="login_label" for="password1">Введите Пароль: </label>
+                        <label class="login_label" for="password2">Введите Пароль еще раз: </label>
+                    </div>
+                    <div>
+                        <input id="username" type="text" name="username" placeholder="Логин" required>
+                        <br>
+                        <input id="email" type="email" name="email" placeholder="Email" required>
+                        <br>
+                        <input id="password1" type="password" name="password1" placeholder="Пароль (Минимум 8 символов)" required>
+                        <br>
+                        <input id="password2" type="password" name="password2" placeholder="Введите пароль еще раз" required>
+                        <br>
+                    </div>
+                </div>
+                <div class="login_btn_field">
+                    <input class="login_btn" type="submit" value="Тыкать СюдА">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

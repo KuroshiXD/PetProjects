@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Создание темы</title>
+{% endblock %}
+{% block content %}
+    <div class="create_topic">
+        {% if errors %}
+            {% for error in errors %}
+                <p>Обосрался: {{ error }}</p>
+            {% endfor %}
+        {% endif %}
+            <p style="color: red; font-weight: bold">Автор: {{ author }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="jopa"> <!-- Flex-обертка для выравнивания по вертикали -->
+                <div class="jopa1"> <!-- Колонка с лейблами -->
+                    <label class="login_label" for="title">Название темы: </label>
+                    <label class="login_label" for="description">Описание темы: </label>
+                </div>
+                <div> <!-- Колонка с полями ввода -->
+                    <input id="title" type="text" name="topic" placeholder="Введите тему" required>
+                    <br>
+                    <textarea name="description" id="description" cols="30" rows="10" placeholder="Введите описание"></textarea>
+                </div>
+            </div>
+            <div class="login_btn_field">
+                <input class="add_topic_btn" type="submit" value="Залить херню для базара">
+                <a href="{% url 'topics' %}" class="return_back_to_topic">Вернуться обратно</a>
+            </div>
+            <em>Дата: {{ date }}</em>
+        </form>
+    </div>
+{% endblock %}

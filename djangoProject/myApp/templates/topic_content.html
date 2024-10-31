@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>{{ title }}</title>
+    <script>
+        function toggleReplyForm(commentId) {
+            let replyForm = document.getElementById('reply-form-' + commentId);
+            if (replyForm.style.display === 'none' || replyForm.style.display === '') {
+                replyForm.style.display = 'block';  // Показываем форму
+            } else {
+                replyForm.style.display = 'none';  // Скрываем форму
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="topic_field">
+        <div class="topic_author">
+            <p>Автор: {{ author }}</p>
+        </div>
+        <div class="topic_content">
+            <h2>{{ title }}</h2>
+            <div class="topic_description">
+                <p>{{ description }}</p>
+            </div>
+        </div>
+        <em>Дата: {{ date }}</em>
+        <br>
+        <a class="back_to_topics" href="{% url 'topics' %}">Вернуться ко всем статьям</a>
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <div class="leave_comment">
+            <div class="leave_comment_header">
+                <h3>Оставить комментарий:</h3>
+            </div>
+            <div class="leave_comment_form">
+                {% if errors %}
+                    <ul>
+                        {% for error in errors.values %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form method="post" action="{% url 'add_comment' topic_id %}">
+                    {% csrf_token %}
+                    <div class="leave_comment_form_content">
+                        <div class="leave_comment_label">
+                            <label for="comment">Комментарий: </label>
+                        </div>
+                        <textarea name="comment" id="comment" rows="4" cols="35"
+                                  placeholder="Введите комментарий" required></textarea>
+                        <br>
+                    </div>
+                    <div class="comment_btn__">
+                        <button type="submit">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p class="login_prompt"><a href="{% url 'login' %}">Войдите в систему</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+
+    <h3 style="color: white">Комментарии:</h3>
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment_view">
+                <p><strong>{{ comment.author.username }}:</strong> {{ comment.content }}</p>
+                <em>{{ comment.created_at }}</em>
+
+                <button onclick="toggleReplyForm({{ comment.id }})">Ответить</button>
+
+                <!-- Скрытое поле для ввода ответа -->
+                <div id="reply-form-{{ comment.id }}" style="display: none;">
+                    <form method="post" action="{% url 'comment_reply' topic_id comment.id %}">
+                        {% csrf_token %}
+                        <div class="leave_reply_form_content">
+                            <label for="reply">Ответ:</label>
+                            <textarea name="reply" id="reply" rows="2" cols="30" placeholder="Введите ваш ответ" required></textarea>
+                            <br>
+                            {% if request.user.is_authenticated %}
+                                <button type="submit">Отправить ответ</button>
+                            {% else %}
+                                <p>Чтобы оставить ответ <a href="{% url 'login' %}">авторизируйтесь</a></p>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="replies">
+                {% for reply in comment.replymessage_set.all %}
+                    <p><strong>{{ reply.author.username}}:</strong> {{ reply.content }}</p>
+                    <em>{{ reply.created_at }}</em>
+                {% empty %}
+                    <p>Ответов пока нет.</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% if not comments %}
+            <p>Комментариев пока нет.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,558 @@
+.base_body{
+    display: flex;
+    flex-direction: column;
+    background: darkgreen;
+    margin: 5rem;
+}
+
+.main_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+    background: linear-gradient(to right, #4de84d, #1e750f);
+    position: fixed;
+    width: 100vw;
+    left: 0;
+}
+
+.footer {
+    position: fixed;
+    background: linear-gradient(to right, #4de84d, #1e750f);
+    color: white;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 1rem;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    color: black;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.1rem solid green;
+    background: linear-gradient(to right, #5ede5e, #018601);
+    margin: 5rem;
+    border-radius: 2rem;
+}
+
+.login_label {
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+#username {
+    margin: 0.1rem;
+    width: 40vw;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 0;
+}
+
+#password {
+    width: 40vw;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 0;
+    margin: 0.1rem;
+}
+
+.form {
+    width: 60vw;
+}
+
+.login_btn_field {
+    text-align: center;
+    margin: 1rem;
+}
+
+.login_btn {
+    display: inline-block; /* Позволяет использовать свойства блочного элемента */
+    padding: 5px 10px; /* Внутренние отступы */
+    font-size: 1rem; /* Размер шрифта */
+    color: white; /* Цвет текста */
+    background-color: #03ce14; /* Цвет фона */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругление углов */
+    cursor: pointer; /* Указатель мыши при наведении */
+    transition: all 0.3s; /* Плавный переход */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.login_btn:hover {
+    background-color: green; /* Более темный цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение кнопки */
+    color: white; /* Цвет текста остается белым */
+}
+
+
+.zalupa {
+    display: flex;
+    flex-direction: row;
+}
+
+.zalupa1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.1rem solid green;
+    background: linear-gradient(to right, #5ede5e, #018601);
+    margin: 5rem;
+    border-radius: 2rem;
+}
+
+.login_label {
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+#username, #email, #password1, #password2 {
+    margin: 0.1rem;
+    width: 40vw;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 0;
+}
+
+.form {
+    width: 60vw;
+}
+
+.switch_btn__ {
+    text-align: right;
+}
+
+.switch_btn, .btn_to_main {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 1rem 0 1rem;
+    font-size: 2rem;
+    color: white;
+    background-color: #007BFF; /* Цвет фона */
+    text-align: center; /* Центрирование текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругление углов */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Указатель мыши при наведении */
+    transition: all 0.3s; /* Плавный переход */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.switch_btn:hover, .btn_to_main:hover {
+    background-color: #0056b3; /* Более темный цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение кнопки */
+    color: white; /* Цвет текста остается белым */
+}
+
+
+.create_topic__btn, .profile_btn, .logout_btn {
+    display: inline-block; /* Чтобы сделать ссылку похожей на кнопку */
+    padding: 10px 20px; /* Внутренние отступы */
+    background-color: #007BFF; /* Цвет фона */
+    color: white; /* Цвет текста */
+    text-align: center; /* Центрирование текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругление углов */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Указатель мыши при наведении */
+    margin: 1rem 2rem 1rem 1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create_topic__btn:hover, .profile_btn:hover, .logout_btn:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+    transform: scale(1.05);
+    color: white;
+}
+
+.login_btn, .registration_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Синий цвет фона */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 1rem 2rem 1rem 1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login_btn:hover, .registration_btn:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+    transform: scale(1.05);
+    color: white;
+}
+
+
+.article_title {
+    display: inline-block;
+    border-radius: 1rem;
+    background: #0d980d;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0.5rem;
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article_title:hover {
+    background-color: #11dc11;
+    transform: scale(1.3);
+    color: white;
+}
+
+.topics {
+    text-align: center;
+}
+
+.topic_field {
+    color: white;
+}
+
+.back_to_topics {
+    display: inline-block;
+    border-radius: 1rem;
+    background: #0d980d;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    margin: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bruh {
+    color: white;
+}
+
+.comment_view {
+    border: white solid 0.1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 30vw;
+    border-radius: 1rem;
+    background: #0d980d;
+    color: white;
+}
+
+.leave_comment {
+    border: white solid 0.1rem;
+    padding: 1rem;
+    background: linear-gradient(to right, #178d17, #0cd919);
+    border-radius: 25% 10%;
+    width: 35vw;
+    margin: 2rem;
+}
+
+.login_prompt {
+    font-size: 1rem;
+    color: white;
+    margin: 1.5rem 0;
+}
+
+.login_prompt a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #079b15; /* Цвет фона кнопки */
+    border-radius: 5px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login_prompt a:hover {
+    background-color: green; /* Более темный цвет при наведении */
+    color: white;
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+
+.leave_comment_header {
+    padding: 0.5rem;
+    margin-bottom: -1rem;
+    color: white;
+}
+
+.leave_comment_form {
+    padding: 1rem;
+    width: 90%;
+    border-radius: 25% 10%;
+    background: greenyellow;
+}
+
+.leave_comment_form_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#comment {
+    border: none;
+    border-radius: 0 10% 25% 10%;
+    background: lawngreen;
+}
+
+.comment_btn__ {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.leave_comment_label {
+    margin: 1rem;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.create_topic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.1rem solid green;
+    background: linear-gradient(to right, #5ede5e, #018601); /* Градиентный фон */
+    border-radius: 2rem;
+    padding: 2rem;
+    width: 60vw;
+}
+
+.create_topic label {
+    margin: 0.5rem;
+    font-weight: bold;
+    color: white; /* Контрастный текст */
+}
+
+.create_topic input[type="text"],
+.create_topic textarea {
+    margin: 0.5rem;
+    width: 40vw;
+    border-radius: 1rem;
+    border: none;
+    padding: 1rem;
+    background: lawngreen;
+    color: black;
+}
+
+.add_topic_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    text-align: center;
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.return_back_to_topic {
+    display: inline-block;
+    margin-left: 4rem;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    text-align: center;
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.create_topic em {
+    margin-top: 1rem;
+    color: white;
+    font-style: italic;
+}
+
+/* Flex-контейнеры для выравнивания полей */
+.jopa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.jopa1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 2rem;
+}
+
+.create_topic textarea {
+    height: 10rem; /* Задаем высоту для текстовой области */
+}
+
+/* Основной контейнер профиля */
+.profile-container {
+    max-width: 90vw;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: #d5d5d5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок профиля */
+.profile-container h1 {
+    text-align: center;
+    font-size: 30px;
+    color: #444;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Кнопка возврата */
+.back-link-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #007bff;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+/* Информация профиля */
+.profile-info h2 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #555;
+}
+
+/* Разделы статей и комментариев */
+.profile-articles,
+.profile-comments {
+    margin-top: 30px;
+}
+
+.profile-articles h2,
+.profile-comments h2 {
+    font-size: 24px;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Стиль списка статей и комментариев */
+.articles-list,
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 0;
+}
+
+.delete_article {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    background: red;
+    border-radius: 1rem;
+    width: 4rem;
+    color: white;
+    margin-left: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.delete_article:hover {
+    background-color: #fc4141;
+    transform: scale(1.3);
+}
+
+.article-item,
+.comment-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.article-item:hover,
+.comment-item:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+/* Ссылки для статей */
+.article-link {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-bottom: 8px;
+}
+
+.article-link:hover {
+    color: #0056b3;
+}
+
+.article-date,
+.comment-item p:last-child {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Сообщения об отсутствии контента */
+.no-articles-message,
+.no-comments-message {
+    font-style: italic;
+    color: #999;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.replies {
+    background: #02c202;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: 30vw;
+    margin-left: 4rem;
+    border: solid white 1px;
+}

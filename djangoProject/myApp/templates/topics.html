@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Темы</title>
+{% endblock %}
+{% block content %}
+    <header class="main_header">
+        <a class="main_header_img" href="{% url 'topics' %}">
+            <img style="height: 4rem; padding: 0.2rem; margin-left: 2rem" src="{% static 'images/stone.png' %}" alt="stone_bruh">
+        </a>
+        {% if request.user.is_authenticated %}
+            <div>
+                <a class="create_topic__btn" href="{% url 'create_topic' %}">Создать херню для базара</a>
+                <a class="profile_btn" href="{% url 'profile' username%}">Профиль</a>
+                <a class="logout_btn" href="{% url 'logout' %}">Выйти из системы</a>
+            </div>
+        {% else %}
+            <div>
+                <a class="login_btn" href="{% url 'login' %}">Авторизация</a>
+                <a class="registration_btn" href="{% url 'register' %}">Регистрация</a>
+            </div>
+        {% endif %}
+    </header>
+    <div class="topics">
+        {% if last_topics %}
+            {% for article in last_topics %}
+                <a class="article_title" href="{% url 'topic_content' article.id %}">{{ article.title }}</a>
+                <br>
+            {% endfor %}
+        {% else %}
+            <h2>Пока ничо нет!</h2>
+        {% endif %}
+    </div>
+{% endblock %}
