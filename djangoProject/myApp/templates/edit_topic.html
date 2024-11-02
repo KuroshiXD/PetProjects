@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>Изменения</title>
+{% endblock %}
+{% block content %}
+    {% if errors %}
+        {% for error in errors %}
+            <p>Обосрался: {{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    <form class="edit_topic_form" method="post" action="{% url 'edit_topic' topic_id %}">
+        {% csrf_token %}
+        <label for="edit_title">Тема: </label>
+        <input type="text" name="edit_title" id="edit_title" placeholder="Изменение темы" value="{{ current_topic }}">
+        <label for="edit_content">Содержание: </label>
+        <textarea id="edit_content" name="edit_content" cols="30" rows="5"
+                  placeholder="Изменение содержимого" required>{{ current_content }}</textarea>
+        <button>Сохранить</button>
+        <a href="{% url 'profile' username%}">Вернуться в профиль</a>
+    </form>
+{% endblock %}

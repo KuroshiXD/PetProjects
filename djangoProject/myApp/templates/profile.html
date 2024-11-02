@@ -25,7 +25,10 @@
                     {% for article in articles %}
                         <div class="article-item">
                             <a href="{% url 'topic_content' article.id %}" class="article-link">{{ article.title }}</a>
-                            <a href="{% url 'delete_topic' username article.id %}" class="delete_article">Удалить</a>
+                            <div class="util_btns">
+                                <a href="{% url 'edit_topic' article.id %}" class="edit_topic">Редактировать</a>
+                                <a href="{% url 'delete_topic' username article.id %}" class="delete_article">Удалить</a>
+                            </div>
                             <span class="article-date">Дата создания: {{ article.created_at }}</span>
                         </div>
                     {% endfor %}

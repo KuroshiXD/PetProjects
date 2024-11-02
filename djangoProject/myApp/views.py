@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import User, Topic, Message, ReplyMessage
 import datetime
+import re
 
 
 def logout(request):
@@ -166,3 +167,32 @@ def profile(request, username):
 def delete_topic(request, username, topic_id):
     Topic.objects.get(id=topic_id).delete()
     return redirect('profile', username=username)
+
+
+def edit_topic(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    if request.method == 'POST':
+        edited_topic = request.POST.get('edit_title')
+        edited_content = request.POST.get('edit_content')
+
+        errors = {}
+
+        if re.match(r'^\s+', edited_topic) or re.match(r'^\s+', edited_content):
+            errors['error'] = "Place shouldn't be starts with a space"
+
+        if errors:
+            return render(request, 'edit_topic.html', context=errors)
+
+        topic.title = edited_topic
+        topic.description = edited_content
+        topic.save()
+
+        return redirect('profile', username=User.objects.get(id=topic.author_id).username)
+    return render(request, 'edit_topic.html', context={
+        "username": User.objects.get(id=topic.author_id).username,
+        "topic_title": Topic.objects.get(id=topic_id).title,
+        "topic_content": Topic.objects.get(id=topic_id).description,
+        "topic_id": topic_id,
+        "current_content": Topic.objects.get(id=topic_id).description,
+        "current_topic": Topic.objects.get(id=topic_id).title,
+    })

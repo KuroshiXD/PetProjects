@@ -25,6 +25,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('topics/<int:topic_id>/comments/', add_comment, name='add_comment'),
     path('topics/profile/<str:username>/deleted_article/<int:topic_id>', delete_topic, name='delete_topic'),
+    path('topics/profile/edit_topic/<int:topic_id>', edit_topic, name='edit_topic'),
     path('topics/<int:topic_id>/rep_comment/<int:comment_id>/', comment_reply, name='comment_reply'),
     path('topics/profile/<str:username>', profile, name='profile'),
     path('topics/<int:topic_id>/', topic_content, name='topic_content'),
