@@ -2,9 +2,10 @@ package com.test_task.bankdeposits.services;
 
 import com.test_task.bankdeposits.models.Client;
 import com.test_task.bankdeposits.repositories.ClientRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,12 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public List<Client> findAllClients() {
-        return clientRepository.findAll();
+    public Page<Client> findAllClientsByLegalForm(Client.LegalForm legalForm, Pageable pageable) {
+        return clientRepository.findByLegalForm(legalForm, pageable);
+    }
+
+    public Page<Client> findAllClients(Pageable pageable) {
+        return clientRepository.findAll(pageable);
     }
 
     public void deleteClient(Long id) {

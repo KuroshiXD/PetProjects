@@ -12,6 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -25,16 +29,12 @@ class DepositServiceTest {
 
     @Mock
     private DepositRepository depositRepository;
-    @Mock
-    private ClientRepository clientRepository;
-    @Mock
-    private BankRepository bankRepository;
 
     @InjectMocks
     private DepositService depositService;
 
     @BeforeEach
-    void setUp() {
+    void init() {
         MockitoAnnotations.openMocks(this);
     }
 
@@ -56,6 +56,36 @@ class DepositServiceTest {
     }
 
     @Test
+    void saveDepositWithoutClient() {
+        Bank bank = new Bank("ZXCV", "8481518456551");
+        bank.setId(1L);
+        Deposit deposit = new Deposit(LocalDate.now(), 5.0, 12);
+        deposit.setBank(bank);
+
+        try {
+            depositService.saveDeposit(deposit);
+            fail("Должнл было бать исключение!");
+        } catch (RuntimeException e) {
+            assertEquals("Client not found!", e.getMessage());
+        }
+    }
+
+    @Test
+    void saveDepositWithoutBank() {
+        Client client = new Client("Qwerty", "Decanter", "Dec", Client.LegalForm.LLC);
+        client.setId(1L);
+        Deposit deposit = new Deposit(LocalDate.now(), 5.0, 12);
+        deposit.setClient(client);
+
+        try {
+            depositService.saveDeposit(deposit);
+            fail("Должнл было бать исключение!");
+        } catch (RuntimeException e) {
+            assertEquals("Bank not found!", e.getMessage());
+        }
+    }
+
+    @Test
     void findDepositById() {
         Deposit deposit = new Deposit(LocalDate.now(), 5.0, 12);
         when(depositRepository.findById(1L)).thenReturn(Optional.of(deposit));
@@ -72,12 +102,16 @@ class DepositServiceTest {
         Deposit deposit1 = new Deposit(LocalDate.now(), 5.0, 12);
         Deposit deposit2 = new Deposit(LocalDate.now(), 3.0, 24);
         List<Deposit> deposits = Arrays.asList(deposit1, deposit2);
-        when(depositRepository.findAll()).thenReturn(deposits);
+        Page<Deposit> depositsPage = new PageImpl<>(deposits);
 
-        List<Deposit> allDeposits = depositService.findAllDeposits();
+        Pageable pageable = PageRequest.of(0, 10);
 
-        assertEquals(2, allDeposits.size());
-        verify(depositRepository, times(1)).findAll();
+        when(depositRepository.findAll(pageable)).thenReturn(depositsPage);
+
+        Page<Deposit> allDeposits = depositService.findAllDeposits(pageable);
+
+        assertEquals(2, allDeposits.getTotalElements());
+        verify(depositRepository, times(1)).findAll(pageable);
     }
 
     @Test

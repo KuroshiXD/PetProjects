@@ -2,9 +2,10 @@ package com.test_task.bankdeposits.services;
 
 import com.test_task.bankdeposits.models.Bank;
 import com.test_task.bankdeposits.repositories.BankRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,8 @@ public class BankService {
         return bankRepository.findById(id);
     }
 
-    public List<Bank> findAllBanks() {
-        return bankRepository.findAll();
+    public Page<Bank> findAllBanks(Pageable pageable) {
+        return bankRepository.findAll(pageable);
     }
 
     public void deleteBank(Long id) {

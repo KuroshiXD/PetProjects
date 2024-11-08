@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +29,7 @@ class BankServiceTest {
     private BankService bankService;
 
     @BeforeEach
-    void setUp() {
+    void init() {
         MockitoAnnotations.openMocks(this);
     }
 
@@ -58,12 +62,16 @@ class BankServiceTest {
         Bank bank1 = new Bank("Bank One", "123456");
         Bank bank2 = new Bank("Bank Two", "654321");
         List<Bank> banks = Arrays.asList(bank1, bank2);
-        when(bankRepository.findAll()).thenReturn(banks);
+        Page<Bank> banksPage = new PageImpl<>(banks);
 
-        List<Bank> allBanks = bankService.findAllBanks();
+        Pageable pageable = PageRequest.of(0, 10);
 
-        assertEquals(2, allBanks.size());
-        verify(bankRepository, times(1)).findAll();
+        when(bankRepository.findAll(pageable)).thenReturn(banksPage);
+
+        Page<Bank> allBanks = bankService.findAllBanks(pageable);
+
+        assertEquals(2, allBanks.getTotalElements());
+        verify(bankRepository, times(1)).findAll(pageable);
     }
 
     @Test

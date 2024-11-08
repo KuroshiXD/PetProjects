@@ -1,12 +1,12 @@
 package com.test_task.bankdeposits.services;
 
 import com.test_task.bankdeposits.models.Deposit;
-import com.test_task.bankdeposits.repositories.BankRepository;
-import com.test_task.bankdeposits.repositories.ClientRepository;
 import com.test_task.bankdeposits.repositories.DepositRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -28,8 +28,12 @@ public class DepositService {
         return depositRepository.findById(id);
     }
 
-    public List<Deposit> findAllDeposits() {
-        return depositRepository.findAll();
+    public Page<Deposit> findAllDeposits(Pageable pageable) {
+        return depositRepository.findAll(pageable);
+    }
+
+    public Page<Deposit> findDepositsByOpeningDay(LocalDate openingDate, Pageable pageable) {
+        return depositRepository.findByOpeningDate(openingDate, pageable);
     }
 
     public void deleteDeposit(Long id) {

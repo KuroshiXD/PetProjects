@@ -2,15 +2,15 @@ package com.test_task.bankdeposits.controllers;
 
 import com.test_task.bankdeposits.models.Client;
 import com.test_task.bankdeposits.services.ClientService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/clients")
 public class ClientController {
 
@@ -21,8 +21,9 @@ public class ClientController {
     }
 
     @GetMapping()
-    public List<Client> getAllClients() {
-        return clientService.findAllClients();
+    public Page<Client> getAllClients(@RequestParam(required = false) Client.LegalForm legalForm, Pageable pageable) {
+        if (legalForm != null) return clientService.findAllClientsByLegalForm(legalForm, pageable);
+        return clientService.findAllClients(pageable);
     }
 
     @GetMapping("/{id}")

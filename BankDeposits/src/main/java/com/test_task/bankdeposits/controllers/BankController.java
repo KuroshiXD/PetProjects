@@ -2,15 +2,15 @@ package com.test_task.bankdeposits.controllers;
 
 import com.test_task.bankdeposits.models.Bank;
 import com.test_task.bankdeposits.services.BankService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/banks")
 public class BankController {
 
@@ -21,8 +21,8 @@ public class BankController {
     }
 
     @GetMapping()
-    public List<Bank> getAllBanks() {
-        return bankService.findAllBanks();
+    public Page<Bank> getAllBanks(Pageable pageable) {
+        return bankService.findAllBanks(pageable);
     }
 
     @GetMapping("/{id}")
