@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все темы</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <a class="header btn" href="/logout">Выйти</a>
+        <a class="header btn" th:href="@{/profile/{id}(id=${user.id})}">Профиль</a>
+        <a class="header btn" href="/topics/create-topic">Создать тему</a>
+    </div>
+    <div class="content" th:each="topic : ${topics}">
+        <a th:href="@{/topics/{id}(id=${topic.id})}" th:text="${topic.title}"/>
+    </div>
+</body>
+</html>

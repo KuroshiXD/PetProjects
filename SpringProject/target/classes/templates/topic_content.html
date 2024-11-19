@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${topic.getTitle()}"/>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h2 th:text="${topic.getTitle()}"/>
+    <h3 th:text="${topic.getContent()}"/>
+    <a href="/topics">Вернуться ко всем темам</a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <a class="header btn" href="/logout">Выйти</a>
+    </div>
+    <p th:text="'Здорова, ' + ${username}"/>
+    <a class="topics" href="/topics">Что-бы продолжить, нажмите</a>
+</body>
+</html>
